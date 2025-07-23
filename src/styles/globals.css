@@ -1,16 +1,19 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
-
+@import "./hero.css";
+/* @import "./bg-partials.css"; */
+@import "./about.css";
+body {
+  overflow-x: hidden;
+}
 :root {
   --background: #ffffff;
-  --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -19,7 +22,3 @@ body {
   font-family: 'Outfit', Arial, Helvetica, sans-serif;
 }
 
-.container {
-  margin-top: 800px; /* Adjust as needed to match header height */
-  max-width: unset; /* Set to your desired max-width */
-}
