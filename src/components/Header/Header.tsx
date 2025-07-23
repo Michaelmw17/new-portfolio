@@ -74,11 +74,11 @@ const Header = () => {
         <div className="md:hidden flex-shrink-0 flex justify-end">
           <button
             aria-label="Toggle menu"
-            className="cursor-pointer"
+            className="cursor-pointer rounded p-1 transition-colors hover:bg-gray-200 active:bg-gray-300"
             onClick={() => setMenuOpen((open) => !open)}
           >
             <svg
-              className="fill-current text-gray-900"
+              className="fill-current text-gray-900 transition-colors hover:text-[#229797] active:text-[#229797]"
               xmlns="http://www.w3.org/2000/svg"
               width="28"
               height="28"

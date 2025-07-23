@@ -21,6 +21,13 @@ export default function Home() {
 
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    // Move focus to the header logo link for accessibility
+    setTimeout(() => {
+      const logoLink = document.querySelector('a[aria-label="Back to top"]');
+      if (logoLink) {
+        (logoLink as HTMLElement).focus();
+      }
+    }, 400); // Wait for scroll animation
   };
 
   return (
