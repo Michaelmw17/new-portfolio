@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function About() {
   return (
     <section className="relative -mt-24 z-20 flex flex-col items-center justify-center" id="about">
@@ -53,12 +55,13 @@ export default function About() {
             Outside of work, I enjoy surfing, playing golf, watching UFC, and playing games with friends.
           </p>
           <div className="flex justify-center">
-            <img
+            <Image
               className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-md"
               src="/images/cropped_image.png"
               alt="Profile"
               width={192}
               height={192}
+              priority
             />
           </div>
         </div>

@@ -1,5 +1,6 @@
+import Image from "next/image";
 import { EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
-import { Github, Linkedin } from "lucide-react";
+import { Github } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -49,7 +50,14 @@ export default function Footer() {
         </div>
         <div className="flex flex-col items-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-col items-center">
-            <img src="/images/android-chrome-192x192-removebg-preview.svg" alt="Logo" className="h-8 mb-2" />
+            <Image
+              src="/images/android-chrome-192x192-removebg-preview.svg"
+              alt="Logo"
+              width={32}
+              height={32}
+              className="h-8 mb-2"
+              priority
+            />
             <span className="text-sm text-gray-500 dark:text-gray-900 text-center">&copy; {new Date().getFullYear()} Michael Watt | All rights reserved</span>
           </div>
         </div>

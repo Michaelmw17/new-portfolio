@@ -12,14 +12,12 @@ export default function Hero() {
         <ParticlesBackground />
       </div>
       <div className="relative z-10 flex flex-col items-center justify-center h-full py-16 px-14 sm:px-6 lg:px-8">
-        <h1 className="font-bold text-2xl md:text-4xl text-center text-gray-800">
-          Welcome to my portfolio
-          <br />
-          My name is Michael
+        <h1 className="font-bold text-2xl md:text-4xl text-center text-gray-800 mt-4 md:mt-0">
+          Welcome to my portfolio!
         </h1>
         <div className="max-w-xl mx-auto">
           <p className="mt-10 text-gray-500 text-center text-xl lg:text-3xl">
-            Frontend Developer
+            Frontend Developer | Creating seamless, responsive web apps, I’m focused on clean code and great UX. — Michael.
           </p>
         </div>
         <div className="mt-10 flex flex-wrap justify-center items-center w-full mx-auto space-x-2 md:space-x-4">
