@@ -7,9 +7,9 @@ export default function Projects() {
         <h1 className="m-2 mt-10  font-semibold dark:text-white md:mt-16 text-3xl">
           Projects
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-16 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-16 mt-10 max-w-4xl mx-auto">
           {/* JDP Electrical Services */}
-          <div className="max-w-md w-full px-8 py-4 mx-auto bg-white rounded-lg shadow-lg flex flex-col h-full min-h-[180px] border-t border-gray-200">
+          <div className="max-w-md w-full px-8 py-4 bg-white rounded-lg shadow-lg flex flex-col h-full min-h-[180px] border-t border-gray-200 mx-auto">
             <div className="flex flex-col flex-1">
               <div className="flex flex-col flex-1 justify-center">
                 <div className="flex justify-center -mt-16 md:justify-end">
@@ -53,7 +53,7 @@ export default function Projects() {
             </div>
           </div>
           {/* Business Advertisement Portal */}
-          <div className="max-w-md w-full px-8 py-4 mx-auto bg-white rounded-lg shadow-lg flex flex-col h-full min-h-[180px] border-t border-gray-200">
+          <div className="max-w-md w-full px-8 py-4 bg-white rounded-lg shadow-lg flex flex-col h-full min-h-[180px] border-t border-gray-200 mx-auto">
             <div className="flex flex-col flex-1">
               <div className="flex flex-col flex-1 justify-center">
                 <div className="flex justify-center -mt-16 md:justify-end">
@@ -91,7 +91,7 @@ export default function Projects() {
             </div>
           </div>
           {/* Basket News */}
-          <div className="max-w-md w-full px-8 py-4 mx-auto bg-white rounded-lg shadow-lg flex flex-col h-full min-h-[180px] border-t border-gray-200">
+          <div className="max-w-md w-full px-8 py-4 bg-white rounded-lg shadow-lg flex flex-col h-full min-h-[180px] border-t border-gray-200 mx-auto">
             <div className="flex flex-col flex-1">
               <div className="flex flex-col flex-1 justify-center">
                 <div className="flex justify-center -mt-16 md:justify-end">
@@ -135,7 +135,7 @@ export default function Projects() {
             </div>
           </div>
           {/* Eco Getaway */}
-          <div className="max-w-md w-full px-8 py-4 mx-auto bg-white rounded-lg shadow-lg flex flex-col h-full min-h-[180px] border-t border-gray-200">
+          <div className="max-w-md w-full px-8 py-4 bg-white rounded-lg shadow-lg flex flex-col h-full min-h-[180px] border-t border-gray-200 mx-auto">
             <div className="flex flex-col flex-1">
               <div className="flex flex-col flex-1 justify-center">
                 <div className="flex justify-center -mt-16 md:justify-end">
