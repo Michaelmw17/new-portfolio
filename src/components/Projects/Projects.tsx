@@ -34,7 +34,7 @@ export default function Projects() {
             <div className="flex flex-col items-start mt-4 pt-3">
               <small>Solo project.</small>
               <a
-                href="https://jdp-electrical-services.com.au/"
+                href="https://www.jdpelectrical.com.au/"
                 className="text-base font-medium text-blue-700 hover:text-[#38bdf8] hover:underline transition-colors"
                 target="_blank" rel="noopener noreferrer"
               >
