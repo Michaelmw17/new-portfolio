@@ -48,20 +48,20 @@ const Header = () => {
           <nav className="hidden md:block">
             <ul className="flex items-center justify-center text-base text-gray-700 gap-8">
               <li>
-                <a className="md:p-4 py-3 px-0 block flex items-center gap-2 group hover:text-[#229797] transition-colors" href="#about">
-                  <UserIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797]" />
+                <a className="md:p-4 py-3 px-0 block flex items-center gap-2 group hover:text-[#229797] active:text-[#229797] transition-colors" href="#about">
+                  <UserIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797] group-active:text-[#229797]" />
                   <span className="transition-colors">About</span>
                 </a>
               </li>
               <li>
-                <a className="md:p-4 py-3 px-0 block flex items-center gap-2 group hover:text-[#229797] transition-colors" href="#work">
-                  <BriefcaseIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797]" />
+                <a className="md:p-4 py-3 px-0 block flex items-center gap-2 group hover:text-[#229797] active:text-[#229797] transition-colors" href="#work">
+                  <BriefcaseIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797] group-active:text-[#229797]" />
                   <span className="transition-colors">Work Experience</span>
                 </a>
               </li>
               <li>
-                <a className="md:p-4 py-3 px-0 block flex items-center gap-2 group hover:text-[#229797] transition-colors" href="#projects">
-                  <FolderIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797]" />
+                <a className="md:p-4 py-3 px-0 block flex items-center gap-2 group hover:text-[#229797] active:text-[#229797] transition-colors" href="#projects">
+                  <FolderIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797] group-active:text-[#229797]" />
                   <span className="transition-colors">Projects</span>
                 </a>
               </li>
@@ -96,20 +96,20 @@ const Header = () => {
             <nav>
               <ul className="flex flex-col items-center text-base text-gray-700 py-4 gap-4">
                 <li>
-                  <a className="py-2 px-4 block flex items-center gap-2 group hover:text-[#229797] transition-colors" href="#about" onClick={() => setMenuOpen(false)}>
-                    <UserIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797]" />
+                  <a className="py-2 px-4 block flex items-center gap-2 group hover:text-[#229797] active:text-[#229797] transition-colors" href="#about" onClick={() => setMenuOpen(false)}>
+                    <UserIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797] group-active:text-[#229797]" />
                     <span className="transition-colors">About</span>
                   </a>
                 </li>
                 <li>
-                  <a className="py-2 px-4 block flex items-center gap-2 group hover:text-[#229797] transition-colors" href="#work" onClick={() => setMenuOpen(false)}>
-                    <BriefcaseIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797]" />
+                  <a className="py-2 px-4 block flex items-center gap-2 group hover:text-[#229797] active:text-[#229797] transition-colors" href="#work" onClick={() => setMenuOpen(false)}>
+                    <BriefcaseIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797] group-active:text-[#229797]" />
                     <span className="transition-colors">Work Experience</span>
                   </a>
                 </li>
                 <li>
-                  <a className="py-2 px-4 block flex items-center gap-2 group hover:text-[#229797] transition-colors" href="#projects" onClick={() => setMenuOpen(false)}>
-                    <FolderIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797]" />
+                  <a className="py-2 px-4 block flex items-center gap-2 group hover:text-[#229797] active:text-[#229797] transition-colors" href="#projects" onClick={() => setMenuOpen(false)}>
+                    <FolderIcon className="h-5 w-5 text-[#38b2ac] transition-colors group-hover:text-[#229797] group-active:text-[#229797]" />
                     <span className="transition-colors">Projects</span>
                   </a>
                 </li>

@@ -16,13 +16,13 @@ export default function Hero() {
           Welcome to my portfolio!
         </h1>
         <div className="max-w-xl mx-auto">
-          <p className="mt-10 text-gray-500 text-center text-xl lg:text-3xl">
+          <p className="mt-4 md:mt-10 text-gray-500 text-center text-xl lg:text-3xl">
             Frontend Developer | Creating seamless, responsive web apps, I’m focused on clean code and great UX. — Michael.
           </p>
         </div>
-        <div className="mt-10 flex flex-wrap justify-center items-center w-full mx-auto space-x-2 md:space-x-4">
+        <div className="mt-2 md:mt-10 flex flex-wrap justify-center items-center w-full mx-auto md:space-x-4">
           <a href="#projects">
-            <button className="flex bg-transparent hover:bg-blue-500 text-blue-700 font-bold hover:text-white py-2 px-4 my-4 border border-blue-500 rounded inline-flex items-center">
+            <button className="w-full min-w-[174px] sm:w-48 bg-transparent hover:bg-blue-500 active:bg-blue-500 text-blue-700 font-bold hover:text-white active:text-white py-2 px-4 my-4 border border-blue-500 rounded inline-flex items-center justify-center">
               <span>See my Projects</span>
               <svg
                 className="ml-2 w-4 h-4 fill-current"
@@ -41,7 +41,7 @@ export default function Hero() {
             </button>
           </a>
           <a href="#about">
-            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-bold hover:text-white py-2 px-4 my-4 border border-blue-500 rounded inline-flex items-center">
+            <button className="w-full min-w-[174px] sm:w-48 bg-transparent hover:bg-blue-500 active:bg-blue-500 text-blue-700 font-bold hover:text-white active:text-white py-2 px-4 my-4 border border-blue-500 rounded inline-flex items-center justify-center">
               <span>Read about me</span>
               <svg
                 className="ml-2 w-4 h-4 fill-current"

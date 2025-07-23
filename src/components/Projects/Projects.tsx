@@ -35,7 +35,7 @@ export default function Projects() {
               <small>Solo project.</small>
               <a
                 href="https://www.jdpelectrical.com.au/"
-                className="text-base font-medium text-blue-700 hover:text-[#38bdf8] hover:underline transition-colors"
+                className="text-base font-medium text-blue-700 hover:text-[#38bdf8] active:text-[#38bdf8] hover:underline active:underline transition-colors"
                 target="_blank" rel="noopener noreferrer"
               >
                 JDP Electrical Services App (Live)
@@ -44,7 +44,7 @@ export default function Projects() {
                 
                 <a
                   href="https://github.com/Michaelmw17/computing-machine"
-                  className="text-base font-medium text-blue-700 hover:text-[#38bdf8] hover:underline transition-colors"
+                  className="text-base font-medium text-blue-700 hover:text-[#38bdf8] active:text-[#38bdf8] hover:underline active:underline transition-colors"
                   target="_blank" rel="noopener noreferrer"
                 >
                   <i className="fab fa-github fa-1x" title="github icon"></i> View Code
@@ -82,7 +82,7 @@ export default function Projects() {
                 
                 <a
                   href="https://github.com/prabhm512/business-advertisement-portal"
-                  className="text-base font-medium text-blue-700 hover:text-[#38bdf8] hover:underline transition-colors"
+                  className="text-base font-medium text-blue-700 hover:text-[#38bdf8] active:text-[#38bdf8] hover:underline active:underline transition-colors"
                   target="_blank" rel="noopener noreferrer"
                 >
                   <i className="fab fa-github fa-1x" title="github icon"></i> View Code
@@ -117,7 +117,7 @@ export default function Projects() {
               <small>With - Andre Grech, Rachelle Barredo.</small>
               <a
                 href="https://agr2020xman.github.io/Project_1-Basketball-News/"
-                className="text-base font-medium text-blue-700 hover:text-[#38bdf8] hover:underline transition-colors"
+                className="text-base font-medium text-blue-700 hover:text-[#38bdf8] active:text-[#38bdf8] hover:underline active:underline transition-colors"
                 target="_blank" rel="noopener noreferrer"
               >
                 Basket News App (Live)
@@ -126,7 +126,7 @@ export default function Projects() {
                 
                 <a
                   href="https://github.com/AGr2020Xman/Project_1-Basketball-News"
-                  className="text-base font-medium text-blue-700 hover:text-[#38bdf8] hover:underline transition-colors"
+                  className="text-base font-medium text-blue-700 hover:text-[#38bdf8] active:text-[#38bdf8] hover:underline active:underline transition-colors"
                   target="_blank" rel="noopener noreferrer"
                 >
                   <i className="fab fa-github fa-1x" title="github icon"></i> View Code
@@ -164,7 +164,7 @@ export default function Projects() {
                 
               <a
                 href="https://github.com/Michaelmw17/environmental-build"
-                className="text-base font-medium text-blue-700 hover:text-[#38bdf8] hover:underline transition-colors"
+                className="text-base font-medium text-blue-700 hover:text-[#38bdf8] active:text-[#38bdf8] hover:underline active:underline transition-colors"
                 target="_blank" rel="noopener noreferrer"
               >
                 <i className="fab fa-github fa-1x" title="github icon"></i> View Code
