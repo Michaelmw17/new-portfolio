@@ -1,5 +1,7 @@
 import { FilmCarousel } from './FilmCarousel';
 
+export const dynamic = 'force-dynamic';
+
 const USERNAME = process.env.LETTERBOXD_USERNAME?.trim() ?? '';
 const RATING_THRESHOLD = 4.5;
 const REVALIDATE_SECONDS = 3600;
@@ -49,10 +51,16 @@ function parseTitleAndYear(itemName: string): { title: string; year: string } {
     : { title: decoded, year: '' };
 }
 
-async function fetchFilmList(): Promise<Omit<Film, 'poster'>[]> {
+type FetchResult<T> = {
+  data: T;
+  error?: string;
+};
+
+async function fetchFilmList(): Promise<FetchResult<Omit<Film, 'poster'>[]>> {
   if (!USERNAME) {
+    const error = 'LETTERBOXD_USERNAME is not configured.';
     console.warn('[letterboxd] LETTERBOXD_USERNAME is not set');
-    return [];
+    return { data: [], error };
   }
 
   const url = `https://letterboxd.com/${USERNAME}/films/rated/${RATING_THRESHOLD}-5/by/your-rating/`;
@@ -60,16 +68,18 @@ async function fetchFilmList(): Promise<Omit<Film, 'poster'>[]> {
     headers: LETTERBOXD_HEADERS,
     next: { revalidate: REVALIDATE_SECONDS },
   });
+
   if (!res.ok) {
+    const error = `Letterboxd list fetch failed (${res.status} ${res.statusText})`;
     console.warn('[letterboxd] list fetch failed', {
       status: res.status,
       statusText: res.statusText,
       url: res.url,
     });
-    return [];
+    return { data: [], error };
   }
-  const html = await res.text();
 
+  const html = await res.text();
   const liBlocks = [
     ...html.matchAll(/<li class="griditem">([\s\S]*?)<\/li>/g),
   ].map((m) => m[1]);
@@ -81,13 +91,14 @@ async function fetchFilmList(): Promise<Omit<Film, 'poster'>[]> {
     hasRobotsMeta: html.toLowerCase().includes('noindex'),
     filmCount: liBlocks.length,
   });
+
   const films: Omit<Film, 'poster'>[] = [];
 
   for (const block of liBlocks) {
     const nameMatch = /data-item-name="([^"]+)"/.exec(block);
     const slugMatch = /data-item-slug="([^"]+)"/.exec(block);
     const linkMatch = /data-item-link="([^"]+)"/.exec(block);
-    const ratingMatch = /<span class="rating[^"]*\brated-(\d+)\b[^"]*"/.exec(
+    const ratingMatch = /<span class="rating[^\"]*\brated-(\d+)\b[^\"]*"/.exec(
       block,
     );
 
@@ -105,7 +116,12 @@ async function fetchFilmList(): Promise<Omit<Film, 'poster'>[]> {
     });
   }
 
-  return films;
+  const error =
+    films.length === 0 && liBlocks.length === 0
+      ? 'No rated films could be parsed from Letterboxd. The page may be blocked or the markup has changed.'
+      : undefined;
+
+  return { data: films, error };
 }
 
 async function fetchPoster(slug: string): Promise<string> {
@@ -126,26 +142,37 @@ async function fetchPoster(slug: string): Promise<string> {
   }
 }
 
-async function fetchFavoriteFilms(): Promise<Film[]> {
-  try {
-    const list = await fetchFilmList();
-    const withPosters = await Promise.all(
-      list.map(async (film) => ({
-        ...film,
-        poster: await fetchPoster(film.slug),
-      })),
-    );
+async function fetchFavoriteFilms(): Promise<FetchResult<Film[]>> {
+  const listResult = await fetchFilmList();
 
-    return withPosters
-      .filter((f) => f.poster)
-      .sort((a, b) => b.rating - a.rating || a.title.localeCompare(b.title));
-  } catch {
-    return [];
+  if (listResult.error) {
+    return { data: [], error: listResult.error };
   }
+
+  const withPosters = await Promise.all(
+    listResult.data.map(async (film) => ({
+      ...film,
+      poster: await fetchPoster(film.slug),
+    })),
+  );
+
+  const films = withPosters
+    .filter((f) => f.poster)
+    .sort((a, b) => b.rating - a.rating || a.title.localeCompare(b.title));
+
+  if (films.length === 0 && listResult.data.length > 0) {
+    return {
+      data: [],
+      error:
+        'Unable to load film posters from Letterboxd. The request may be blocked or the page markup may have changed.',
+    };
+  }
+
+  return { data: films };
 }
 
 export default async function Letterboxd() {
-  const films = await fetchFavoriteFilms();
+  const { data: films, error } = await fetchFavoriteFilms();
 
   return (
     <section className="anchor-section section-shell bg-[var(--ink)] px-6 lg:px-12">
@@ -163,7 +190,11 @@ export default async function Letterboxd() {
           Letterboxd.
         </p>
 
-        {films.length > 0 ? (
+        {error ? (
+          <p className="font-mono text-sm text-[var(--cream)] opacity-60">
+            {error}
+          </p>
+        ) : films.length > 0 ? (
           <FilmCarousel films={films} />
         ) : (
           <p className="font-mono text-sm text-[var(--cream)] opacity-60">
