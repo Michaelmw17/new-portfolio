@@ -1,0 +1,57 @@
+name: Update Letterboxd favorites
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-letterboxd-favorites
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      LETTERBOXD_USERNAME: ${{ vars.LETTERBOXD_USERNAME }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify workflow configuration
+        run: |
+          if [ -z "$LETTERBOXD_USERNAME" ]; then
+            echo "LETTERBOXD_USERNAME repository variable is not configured."
+            exit 1
+          fi
+
+      - name: Refresh favorite films
+        run: npm run update:letterboxd -- "$LETTERBOXD_USERNAME"
+
+      - name: Commit updated favorites
+        run: |
+          if git diff --quiet -- src/data/favorite-films.json; then
+            echo "No favorite film changes detected."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/favorite-films.json
+          git commit -m "chore: update Letterboxd favorites"
+          git push
