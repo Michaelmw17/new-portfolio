@@ -18,6 +18,15 @@ const LETTERBOXD_HEADERS = {
   "cache-control": "no-cache",
 };
 
+function compareFilms(a, b) {
+  return (
+    b.rating - a.rating ||
+    a.title.localeCompare(b.title) ||
+    a.year.localeCompare(b.year) ||
+    a.slug.localeCompare(b.slug)
+  );
+}
+
 function decodeHtmlEntities(str) {
   return str
     .replace(/&#039;/g, "'")
@@ -138,7 +147,7 @@ async function main() {
 
   const visibleFilms = withPosters
     .filter((film) => film.poster)
-    .sort((a, b) => b.rating - a.rating || a.title.localeCompare(b.title));
+    .sort(compareFilms);
 
   if (visibleFilms.length === 0) {
     throw new Error("No favorite films with posters were found.");

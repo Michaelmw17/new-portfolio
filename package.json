@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "update:letterboxd": "node scripts/update-letterboxd-favorites.mjs"
+    "update:letterboxd": "node scripts/update-letterboxd-favorites.mjs",
+    "sync:letterboxd": "powershell -ExecutionPolicy Bypass -File .\\scripts\\sync-letterboxd.ps1"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
