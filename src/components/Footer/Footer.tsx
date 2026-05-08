@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
           <div className="flex flex-col items-center">
-            <h5 className="label-mono mb-4">// contact</h5>
+            <h5 className="label-mono mb-4">{"// contact"}</h5>
             <div className="flex space-x-5">
               <a href="mailto:michaelmw17@outlook.com" className={linkClass} aria-label="Email">
                 <EnvelopeIcon className="h-6 w-6" />
@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-center">
-            <h5 className="label-mono mb-4">// location</h5>
+            <h5 className="label-mono mb-4">{"// location"}</h5>
             <div className="flex items-center gap-2 text-[var(--cream)] font-mono text-sm">
               <span>Sydney, NSW</span>
               <a
@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-center">
-            <h5 className="label-mono mb-4">// follow</h5>
+            <h5 className="label-mono mb-4">{"// follow"}</h5>
             <div className="flex space-x-5">
               <a
                 href="https://github.com/Michaelmw17/"

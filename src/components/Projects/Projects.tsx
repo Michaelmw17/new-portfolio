@@ -75,7 +75,7 @@ export default function Projects() {
     >
       <div className="max-w-5xl mx-auto">
         <div id="projects" className="anchor-target mb-12">
-          <div className="label-mono mb-3">// projects</div>
+          <div className="label-mono mb-3">{"// projects"}</div>
           <h2 className="serif-display text-3xl md:text-5xl">Projects</h2>
           <div className="h-px w-full bg-[var(--border)] mt-6" />
         </div>

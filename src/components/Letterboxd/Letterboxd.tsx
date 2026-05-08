@@ -101,7 +101,7 @@ export default async function Letterboxd() {
     >
       <div className="max-w-5xl mx-auto">
         <div id="favourites" className="anchor-target mb-12">
-          <div className="label-mono mb-3">// favourites</div>
+          <div className="label-mono mb-3">{"// favourites"}</div>
           <h2 className="serif-display text-3xl md:text-5xl">Favourite Movies</h2>
           <div className="h-px w-full bg-[var(--border)] mt-6" />
         </div>

@@ -23,7 +23,7 @@ export default function Hero() {
       <MatrixRain />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-12">
-        <div className="label-mono inline-block bg-[var(--surface)] border border-[var(--border)] px-2.5 py-1 rounded mb-5">// frontend engineer</div>
+        <div className="label-mono inline-block bg-[var(--surface)] border border-[var(--border)] px-2.5 py-1 rounded mb-5">{"// frontend engineer"}</div>
 
         <h1 className="serif-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 max-w-3xl">
           Frontend, designed <br />  for <em>humans</em>.

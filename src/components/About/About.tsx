@@ -7,7 +7,7 @@ export default function About() {
     >
       <div className="max-w-3xl mx-auto">
         <div id="about" className="anchor-target mb-12">
-          <div className="label-mono mb-3">// about</div>
+          <div className="label-mono mb-3">{"// about"}</div>
           <h2 className="serif-display text-3xl md:text-5xl">About</h2>
           <div className="h-px w-full bg-[var(--border)] mt-6" />
         </div>

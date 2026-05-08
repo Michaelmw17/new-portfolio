@@ -36,7 +36,7 @@ const Work = () => {
     >
       <div className="max-w-3xl mx-auto">
         <div id="work" className="anchor-target mb-12">
-          <div className="label-mono mb-3">// experience</div>
+          <div className="label-mono mb-3">{"// experience"}</div>
           <h2 className="serif-display text-3xl md:text-5xl">Work Experience</h2>
           <div className="h-px w-full bg-[var(--border)] mt-6" />
         </div>
