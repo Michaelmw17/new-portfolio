@@ -1,21 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
-@import "./about.css";
-@import "./work.css";
 
 :root {
-  --background: #ffffff;
+  --ink: #14130f;
+  --surface: #1a1916;
+  --border: #2a2a2a;
+  --accent: #fcd368;
+  --accent-soft: rgba(252, 211, 104, 0.08);
+  --accent-line: rgba(252, 211, 104, 0.25);
+  --cream: #f0ede4;
+
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, system-ui, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  --background: var(--ink);
+  --foreground: var(--cream);
+  --anchor-offset: 3.75rem;
+  --section-pad-top: 2.75rem;
+  --section-pad-bottom: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --anchor-offset: 4.25rem;
+    --section-pad-top: 3.25rem;
+    --section-pad-bottom: 4rem;
+  }
 }
 
 html {
-    overflow-x: hidden;
-    scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--anchor-offset);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Outfit', Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   overflow-x: hidden;
 }
 
+.anchor-section {
+  scroll-margin-top: var(--anchor-offset);
+}
+
+.anchor-target {
+  scroll-margin-top: var(--anchor-offset);
+}
+
+.section-shell {
+  padding-top: var(--section-pad-top);
+  padding-bottom: var(--section-pad-bottom);
+}
+
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.serif-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.1;
+}
+
+.serif-display em {
+  color: var(--accent);
+  font-style: italic;
+}

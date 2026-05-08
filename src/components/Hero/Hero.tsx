@@ -1,106 +1,95 @@
 "use client";
 
 import React from "react";
-import ParticlesBackground from "../ParticlesBackground";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { Github } from "lucide-react";
+import MatrixRain from "../Matrix/MatrixRain";
 
+const STACK = ["React", "TypeScript", "Next.js", "Node"];
+
+const SOCIAL_LINK_CLASS =
+  "text-[var(--cream)] hover:text-[var(--accent)] transition-colors rounded focus-visible:outline-2 focus-visible:outline-[var(--accent)] focus-visible:outline-offset-2";
+
+const CTA_BASE =
+  "group font-mono text-xs font-medium px-4 py-2.5 rounded border border-[var(--accent)] bg-[var(--accent)] text-[var(--ink)] transition-all duration-200 cursor-pointer hover:bg-transparent hover:text-[var(--cream)] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-4px_rgba(252,211,104,0.35)] active:translate-y-0 focus-visible:outline-2 focus-visible:outline-[var(--accent)] focus-visible:outline-offset-2";
 
 export default function Hero() {
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="head relative w-full h-[600px] overflow-hidden bg-[#05fdfd] pt-20 md:pt-32">
-      <div className="absolute inset-0 h-full pointer-events-none z-0">
-        <ParticlesBackground />
-      </div>
-      <div className="relative z-10 flex flex-col items-center justify-center h-full py-16 px-14 sm:px-6 lg:px-8">
-        <h1 className="font-bold text-2xl md:text-4xl text-center text-gray-800 mt-4 md:mt-0">
-          Welcome to my portfolio!
+    <div className="relative w-full overflow-hidden bg-[var(--ink)] pt-28 md:pt-36 pb-20 md:pb-28">
+      <MatrixRain />
+
+      <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-12">
+        <div className="label-mono inline-block bg-[var(--surface)] border border-[var(--border)] px-2.5 py-1 rounded mb-5">// frontend engineer</div>
+
+        <h1 className="serif-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 max-w-3xl">
+          Frontend, designed <br />  for <em>humans</em>.
         </h1>
-        <div className="max-w-xl mx-auto">
-          <p className="mt-4 md:mt-10 text-gray-500 text-center text-xl lg:text-3xl">
-            Frontend Developer | Creating seamless, responsive web apps, I’m focused on clean code and great UX. — Michael.
-          </p>
-        </div>
-        {/* Social/contact icons row */}
-        <div className="mt-6 mb-2 flex flex-row space-x-6 justify-center items-center">
-          {/* Email Icon */}
-          <a href="mailto:michaelmw17@outlook.com" aria-label="Email"
-            className="group transition-all"
-          >
-            <EnvelopeIcon className="h-7 w-7 text-[#0A66C2] group-hover:text-[#1DA1F2] group-hover:scale-110 transition-all" />
-          </a>
-          {/* GitHub Icon */}
-          <a href="https://github.com/Michaelmw17/" aria-label="GitHub" target="_blank" rel="noopener noreferrer"
-            className="group transition-all"
-          >
-            <Github className="h-7 w-7 text-[#0A66C2] group-hover:text-[#1DA1F2] group-hover:scale-110 transition-all" />
-          </a>
-          {/* LinkedIn Icon */}
-          <a href="https://linkedin.com/in/michael-watt-6a76961b3/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"
-            className="group transition-all"
-          >
-            <svg className="h-7 w-7 text-[#0A66C2] group-hover:text-[#1DA1F2] group-hover:scale-110 transition-all" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" strokeWidth="2" fill="none" className="transition-colors" />
-              <path d="M6.94 17h2.12V10.5H6.94V17zM8 9.44a1.23 1.23 0 1 0 0-2.46 1.23 1.23 0 0 0 0 2.46zM11.06 17h2.12v-3.13c0-.75.27-1.26.95-1.26.68 0 .97.51.97 1.26V17h2.12v-3.36c0-1.67-.89-2.44-2.08-2.44-1.01 0-1.46.56-1.71.95v-0.81h-2.12c.03.53 0 5.66 0 5.66z" fill="currentColor" className="transition-colors" />
-            </svg>
-          </a>
-        </div>
-        {/* Buttons row */}
-        <div className="mt-2 md:mt-4 flex flex-wrap justify-center items-center w-full mx-auto md:space-x-4">
-          <button
-            className="w-full min-w-[174px] sm:w-48 bg-transparent hover:bg-blue-500 active:bg-blue-500 text-blue-700 font-bold hover:text-white active:text-white py-2 px-4 my-4 border border-blue-500 rounded inline-flex items-center justify-center"
-            onClick={() => {
-              const el = document.getElementById('projects');
-              if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-                if (el.focus) el.focus();
-              }
-            }}
-          >
-            <span>See my Projects</span>
-            <svg
-              className="ml-2 w-4 h-4 fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+
+        <p className="text-[var(--cream)] text-base md:text-lg leading-relaxed max-w-xl mb-8">
+          Sydney-based developer. 4+ years shipping React, TypeScript, and Next.js across
+          14 insurance brands at Greenstone Financial Services.
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-8">
+          {STACK.map((tech) => (
+            <span
+              key={tech}
+              className="font-mono text-[11px] font-medium text-[var(--ink)] bg-[var(--accent)] px-2.5 py-1 rounded"
             >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <div className="inline-flex items-center gap-5 mb-8 bg-[var(--surface)] border border-[var(--border)] px-3 py-2 rounded">
+          <a href="mailto:michaelmw17@outlook.com" aria-label="Email" className={SOCIAL_LINK_CLASS}>
+            <EnvelopeIcon className="h-5 w-5" />
+          </a>
+          <a
+            href="https://github.com/Michaelmw17/"
+            aria-label="GitHub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={SOCIAL_LINK_CLASS}
+          >
+            <Github className="h-5 w-5" />
+          </a>
+          <a
+            href="https://linkedin.com/in/michael-watt-6a76961b3/"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={SOCIAL_LINK_CLASS}
+          >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" strokeWidth="2" fill="none" />
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
+                d="M6.94 17h2.12V10.5H6.94V17zM8 9.44a1.23 1.23 0 1 0 0-2.46 1.23 1.23 0 0 0 0 2.46zM11.06 17h2.12v-3.13c0-.75.27-1.26.95-1.26.68 0 .97.51.97 1.26V17h2.12v-3.36c0-1.67-.89-2.44-2.08-2.44-1.01 0-1.46.56-1.71.95v-0.81h-2.12c.03.53 0 5.66 0 5.66z"
+                fill="currentColor"
               />
             </svg>
+          </a>
+        </div>
+
+        <div className="flex flex-wrap gap-3">
+          <button onClick={() => scrollTo("projects")} className={CTA_BASE}>
+            view projects{" "}
+            <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+              →
+            </span>
           </button>
-          <button
-            className="w-full min-w-[174px] sm:w-48 bg-transparent hover:bg-blue-500 active:bg-blue-500 text-blue-700 font-bold hover:text-white active:text-white py-2 px-4 my-4 border border-blue-500 rounded inline-flex items-center justify-center"
-            onClick={() => {
-              const el = document.getElementById('about');
-              if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-                if (el.focus) el.focus();
-              }
-            }}
-          >
-            <span>Read about me</span>
-            <svg
-              className="ml-2 w-4 h-4 fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
+          <button onClick={() => scrollTo("about")} className={CTA_BASE}>
+            read about me{" "}
+            <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+              →
+            </span>
           </button>
         </div>
       </div>
     </div>
-    );
-  }
+  );
+}
