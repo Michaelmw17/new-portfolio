@@ -56,6 +56,63 @@ type FetchResult<T> = {
   error?: string;
 };
 
+const STATIC_FALLBACK_FILMS: Film[] = [
+  {
+    slug: 'parasite-2019',
+    title: 'Parasite',
+    year: '2019',
+    link: 'https://letterboxd.com/film/parasite-2019/',
+    rating: 5,
+    poster:
+      'https://a.ltrbxd.com/resized/film-poster/1/1/6/6/7/7/116677-parasite-0-1000-0-1500-crop.jpg?v=8d48dbb93d',
+  },
+  {
+    slug: 'the-shawshank-redemption',
+    title: 'The Shawshank Redemption',
+    year: '1994',
+    link: 'https://letterboxd.com/film/the-shawshank-redemption/',
+    rating: 5,
+    poster:
+      'https://a.ltrbxd.com/resized/film-poster/5/1/3/9/5139-the-shawshank-redemption-0-1000-0-1500-crop.jpg?v=8d48dbb93d',
+  },
+  {
+    slug: 'the-dark-knight',
+    title: 'The Dark Knight',
+    year: '2008',
+    link: 'https://letterboxd.com/film/the-dark-knight/',
+    rating: 5,
+    poster:
+      'https://a.ltrbxd.com/resized/film-poster/5/2/0/7/5207-the-dark-knight-0-1000-0-1500-crop.jpg?v=8d48dbb93d',
+  },
+  {
+    slug: 'pulp-fiction',
+    title: 'Pulp Fiction',
+    year: '1994',
+    link: 'https://letterboxd.com/film/pulp-fiction/',
+    rating: 5,
+    poster:
+      'https://a.ltrbxd.com/resized/film-poster/5/1/4/5/5145-pulp-fiction-0-1000-0-1500-crop.jpg?v=8d48dbb93d',
+  },
+  {
+    slug: 'inception',
+    title: 'Inception',
+    year: '2010',
+    link: 'https://letterboxd.com/film/inception/',
+    rating: 5,
+    poster:
+      'https://a.ltrbxd.com/resized/film-poster/5/2/4/6/5246-inception-0-1000-0-1500-crop.jpg?v=8d48dbb93d',
+  },
+  {
+    slug: 'the-godfather',
+    title: 'The Godfather',
+    year: '1972',
+    link: 'https://letterboxd.com/film/the-godfather/',
+    rating: 5,
+    poster:
+      'https://a.ltrbxd.com/resized/film-poster/5/0/5/9/5059-the-godfather-0-1000-0-1500-crop.jpg?v=8d48dbb93d',
+  },
+];
+
 async function fetchFilmList(): Promise<FetchResult<Omit<Film, 'poster'>[]>> {
   if (!USERNAME) {
     const error = 'LETTERBOXD_USERNAME is not configured.';
@@ -146,7 +203,11 @@ async function fetchFavoriteFilms(): Promise<FetchResult<Film[]>> {
   const listResult = await fetchFilmList();
 
   if (listResult.error) {
-    return { data: [], error: listResult.error };
+    console.warn(
+      '[letterboxd] Falling back to static film list due to fetch error:',
+      listResult.error,
+    );
+    return { data: STATIC_FALLBACK_FILMS };
   }
 
   const withPosters = await Promise.all(
@@ -161,18 +222,17 @@ async function fetchFavoriteFilms(): Promise<FetchResult<Film[]>> {
     .sort((a, b) => b.rating - a.rating || a.title.localeCompare(b.title));
 
   if (films.length === 0 && listResult.data.length > 0) {
-    return {
-      data: [],
-      error:
-        'Unable to load film posters from Letterboxd. The request may be blocked or the page markup may have changed.',
-    };
+    console.warn(
+      '[letterboxd] No posters loaded, falling back to static film list',
+    );
+    return { data: STATIC_FALLBACK_FILMS };
   }
 
   return { data: films };
 }
 
 export default async function Letterboxd() {
-  const { data: films, error } = await fetchFavoriteFilms();
+  const { data: films } = await fetchFavoriteFilms();
 
   return (
     <section className="anchor-section section-shell bg-[var(--ink)] px-6 lg:px-12">
@@ -190,11 +250,7 @@ export default async function Letterboxd() {
           Letterboxd.
         </p>
 
-        {error ? (
-          <p className="font-mono text-sm text-[var(--cream)] opacity-60">
-            {error}
-          </p>
-        ) : films.length > 0 ? (
+        {films.length > 0 ? (
           <FilmCarousel films={films} />
         ) : (
           <p className="font-mono text-sm text-[var(--cream)] opacity-60">
