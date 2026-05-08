@@ -3,6 +3,14 @@ import { FilmCarousel } from "./FilmCarousel";
 const USERNAME = process.env.LETTERBOXD_USERNAME?.trim() ?? "";
 const RATING_THRESHOLD = 4.5;
 const REVALIDATE_SECONDS = 3600;
+const LETTERBOXD_HEADERS = {
+  "user-agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+  accept:
+    "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+  "accept-language": "en-AU,en;q=0.9,en-US;q=0.8",
+  "cache-control": "no-cache",
+} as const;
 
 export type Film = {
   slug: string;
@@ -30,14 +38,35 @@ function parseTitleAndYear(itemName: string): { title: string; year: string } {
 }
 
 async function fetchFilmList(): Promise<Omit<Film, "poster">[]> {
-  if (!USERNAME) return [];
+  if (!USERNAME) {
+    console.warn("[letterboxd] LETTERBOXD_USERNAME is not set");
+    return [];
+  }
 
   const url = `https://letterboxd.com/${USERNAME}/films/rated/${RATING_THRESHOLD}-5/by/your-rating/`;
-  const res = await fetch(url, { next: { revalidate: REVALIDATE_SECONDS } });
-  if (!res.ok) return [];
+  const res = await fetch(url, {
+    headers: LETTERBOXD_HEADERS,
+    next: { revalidate: REVALIDATE_SECONDS },
+  });
+  if (!res.ok) {
+    console.warn("[letterboxd] list fetch failed", {
+      status: res.status,
+      statusText: res.statusText,
+      url: res.url,
+    });
+    return [];
+  }
   const html = await res.text();
 
   const liBlocks = [...html.matchAll(/<li class="griditem">([\s\S]*?)<\/li>/g)].map((m) => m[1]);
+  console.info("[letterboxd] list fetch result", {
+    status: res.status,
+    url: res.url,
+    hasGridItems: html.includes('class="griditem"'),
+    hasSigninPrompt: html.toLowerCase().includes("sign in"),
+    hasRobotsMeta: html.toLowerCase().includes("noindex"),
+    filmCount: liBlocks.length,
+  });
   const films: Omit<Film, "poster">[] = [];
 
   for (const block of liBlocks) {
@@ -66,6 +95,7 @@ async function fetchFilmList(): Promise<Omit<Film, "poster">[]> {
 async function fetchPoster(slug: string): Promise<string> {
   try {
     const res = await fetch(`https://letterboxd.com/film/${slug}/`, {
+      headers: LETTERBOXD_HEADERS,
       next: { revalidate: REVALIDATE_SECONDS },
     });
     if (!res.ok) return "";
