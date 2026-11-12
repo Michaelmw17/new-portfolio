@@ -51,3 +51,7 @@ After running the script, commit the updated JSON file so production gets the ne
 ```bash
 npm run build
 ```
+
+In VS Code, press F5 and select **Build and run Next.js** to install
+dependencies, build the production app, and start it. VS Code opens the
+site in your browser when the server is ready.
